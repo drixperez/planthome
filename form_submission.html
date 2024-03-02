@@ -1,0 +1,58 @@
+html>
+<head>
+ <meta charset="UTF 8">
+<!-- // set up the character set -->
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- //make the html compatible with all browsers -->
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- //set the width of the viewport to the device screen width and set the zoom to 100% -->
+ <title>HTML form to Google Sheet</title>
+ <style>
+   h1 {
+     font-family: Arial;
+   }
+ </style>
+<!-- //make the display text arial -->
+</head>
+<body>
+ <br>
+ <h1>click submit to change conditions...</h1>
+<form action="REDACTED" method='post' onsubmit="return validateForm()">
+<!-- //when the form is submitted,run the validateForm function and if true post data to the linked google apps script ‘SHEET WRITER’(see below) -->
+ <br>
+ <input type="text" id="tempMin" name="TempMin" placeholder='Enter min temperature'>
+ <input type="text" id="tempMax" name="TempMax" placeholder='Enter max temperature'><br><br>
+ <input type="text" id="moistMin" name="MoistMin" placeholder='Enter min moisture'>
+ <input type="text" id="moistMax" name="MoistMax" placeholder='Enter max moisture'><br><br>
+ <input type="text" id="lightMin" name="LightMin" placeholder='Enter min brightness'>
+ <input type="text" id="lightMax" name="LightMax" placeholder='Enter max brightness'><br><br>
+<!-- //type = text, i.e set all entries to stings -->
+ <input type="submit" value="Submit">
+<!-- //each one of the inputs is given a text data type and named the corresponding spreadsheet name -->
+<!-- //the display asks users to enter new data via the placeholder text in the boxes -->
+</form>
+<script>
+ function validateForm() {
+   var tempMax = document.getElementById("tempMax").value;
+   var tempMin = document.getElementById("tempMin").value;
+   var moistMax = document.getElementById("moistMax").value;
+   var moistMin = document.getElementById("moistMin").value;
+   var lightMax = document.getElementById("lightMax").value;
+   var lightMin = document.getElementById("lightMin").value;
+//each submitted form value is retrieved ‘byID’ and stored as a local variable in the function
+   if (tempMax == "" || tempMin == "" || moistMax == "" || moistMin == "" || lightMax == "" || lightMin == "") {
+     alert("All fields must be filled out");
+//if any value is empty i.e = “” a window alert is displayed and the values aren’t submitted because the validate form function is made ‘FALSE’
+     if (isNaN(tempMax) || isNaN(tempMin) || isNaN(moistMax) || isNaN(moistMin) || isNaN(lightMax) || isNaN(lightMin)) {
+alert("All fields must be a valid number");
+// only allow form submission if all entries are numbers, if not alert that the entries aren’t numbers
+     return false;
+     }
+   }
+   alert("Form submitted successfully!");
+   return true;
+//if none of the fields are empty and none are invalid data types, a success window alert is displayed and the validate form function is made true and the values are submitted to the SHEET WRITER google apps script
+ }
+</script>
+</body>
+</html>

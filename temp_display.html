@@ -1,0 +1,38 @@
+<html>
+<head>
+ <style>
+   .circle {
+     position: relative;
+     top: 0;
+     left: 70px;
+     width: 200px;
+     height: 200px;
+     border-radius: 100px;
+     background-color: #ccc;
+/* //set default colour to grey */
+   }
+  .circle:before {
+     content: "🌡️";
+/* //temperature symbol */
+     position: relative;
+     left:50px;
+     top: 20%;
+     transform: translate(-50%, -50%);
+     font-size: 100px;
+     color: white;
+   }
+ </style>
+</head>
+<body>
+ <div class="circle" id="circle"></div>
+ <script>
+   function updateCircleColor() {
+     google.script.run.withSuccessHandler(function(color) {
+       document.getElementById('circle').style.backgroundColor = color;
+     }).tempCircleValue();
+   }
+   updateCircleColor();
+//apply the colouring function to the circle
+ </script>
+</body>
+</html>

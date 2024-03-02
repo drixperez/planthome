@@ -1,0 +1,37 @@
+<html>
+<head>
+ <style>
+   .circle {
+     position: relative;
+     top: 0;
+     left: 0;
+     width: 200px;
+     height: 200px;
+     border-radius: 100px;
+     background-color: #ccc;
+/* //default colour is  grey */
+   }
+  .circle:before {
+     content: "💧";
+     position: relative;
+     top: 20%;
+     left: 25%;
+     transform: translate(-50%, -50%);
+     font-size: 100px;
+     color: white;
+   }
+ </style>
+</head>
+<body>
+ <div class="circle" id="circle"></div>
+ <script>
+   function updateCircleColor() {
+     google.script.run.withSuccessHandler(function(color) {
+       document.getElementById('circle').style.backgroundColor = color;
+     }).waterCircleValue();
+   }
+   updateCircleColor();
+//apply the colour function's result to the circle's colour
+ </script>
+</body>
+</html>

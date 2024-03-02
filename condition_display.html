@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <base target="_top">
+<!-- //ensures displayed data is opened on the same page, not a new one -->
+   <style>
+     h1 {
+       font-family: Arial;
+     }
+     h2 {
+       font-family: Arial;
+     }
+/* //styling the text as arial */
+   </style>
+ </head>
+ <body>
+   <center><br>
+   <h1 align="left">current planthome conditions...</h1>
+   <h2 align="left" style="color:#6aa84f;">
+<!-- //displaying green text, which exactly matches the rest of the site to the hexadecimal value -->
+     <?var data = getSheetData();?>
+<!-- //calls getSheetData function(SEE BELOW), which returns the array of the environmental limits -->
+     <?var titles = ['temperature: ',  'moisture:  ', 'brightness:  '];?>
+     <div><?= titles[0] ?><?= data[0][1] ?> to <?= data[0][0]?> (°C)</div>
+     <br>
+     <div><?= titles[1] ?><?= data[0][3] ?> to <?= data[0][2]?> (%)</div>
+     <br>
+     <div><?= titles[2] ?><?= data[0][5] ?> to <?= data[0][4]?> (lux)</div>
+     <br>
+<!-- //each sentence reads the condition title then the minimum condition value from the array, then displays the text ‘ to ’ then displays the maximum values of that condition from the array then the condition’s unit -->
+<!-- //e.g ‘temperature: ’,10,’ to ’,30,‘°C’ -->
+   </h2></center>
+ </body>
+</html>

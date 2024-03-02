@@ -1,0 +1,43 @@
+<html>
+<head>
+ <style>
+   .circle {
+     position: relative;
+     top: 0;
+     left: 15%;
+     width: 200px;
+     height: 200px;
+     border-radius: 100px;
+     background-color: #ccc;
+/* //set the circle’s position to relative, at the top and 15% left of the frame 
+//set the width,height, border radius 
+//the background colour of the circle is set to grey */
+   }
+  .circle:before {
+     content: "💡";
+     font-size: 100px;
+/* //set a light bulb symbol to appear in the circle of font size 100 */
+     position: relative;
+     top: 20%;
+     left: 25%;
+/* //set its position to 25% of the frame left, 20% down relative to the frame */
+     transform: translate(-50%, -50%);
+/* //set its position to be in the centre of the circle */
+   }
+ </style>
+</head>
+<body>
+ <div class="circle" id="circle"></div>
+<!-- //display the styled circle  -->
+ <script>
+   function updateCircleColor() {
+     google.script.run.withSuccessHandler(function(color) {
+       document.getElementById('circle').style.backgroundColor = color;
+     }).lightCircleValue();
+//call the light circle value function to return the colour as red or green as the new colour attribute of the circle
+   }
+   updateCircleColor();
+//run the function
+ </script>
+</body>
+</html>
